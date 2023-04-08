@@ -12,40 +12,43 @@
  */
 binary_tree_t *binary_tree_insert_right(binary_tree_t *parent, int value)
 {
-	binary_tree_t *new_node, *prnt;
+	binary_tree_t *head, *new_node;
 
-	if (parent == NULL)
+	if (!parent)
 		return (NULL);
-
 	new_node = creates_node(value);
 	if (!new_node)
 		return (NULL);
-
-	prnt = parent;
-	if (value < prnt->n)
+	head = parent;
+	if (value < head->n)
 	{
-		if (prnt->left == NULL)
+		if (head->left == NULL)
 		{
-			prnt->left = new_node;
-			new_node->parent = prnt;
+			new_node->parent = head;
+			head->left = new_node;
 		}
 		else
 		{
-			if (prnt->left != NULL)
-				insert_left(prnt, new_node);
+			head = head->left;
+			if (value < head->n)
+				insert_left(head, new_node);
+			else
+				insert_right(head, new_node);
 		}
 	}
 	else
 	{
-		if (value > prnt->n)
+		if (head->right == NULL)
 		{
-			if (prnt->right == NULL)
-				prnt->right = new_node;
+			new_node->parent = head;
+			head->right = new_node;
 		}
 		else
 		{
-			if (prnt->right != NULL)
-				insert_right(prnt, new_node);
+			if (value < head->n)
+				insert_left(head, new_node);
+			else
+				insert_right(head, new_node);
 		}
 	}
 	return (parent);
