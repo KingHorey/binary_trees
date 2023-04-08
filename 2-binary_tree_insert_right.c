@@ -20,36 +20,14 @@ binary_tree_t *binary_tree_insert_right(binary_tree_t *parent, int value)
 	if (!new_node)
 		return (NULL);
 	head = parent;
-	if (value < head->n)
+	if (head->right == NULL)
 	{
-		if (head->left == NULL)
-		{
-			new_node->parent = head;
-			head->left = new_node;
-		}
-		else
-		{
-			head = head->left;
-			if (value < head->n)
-				insert_left(head, new_node);
-			else
-				insert_right(head, new_node);
-		}
+		new_node->parent = head;
+		head->right = new_node;
 	}
 	else
 	{
-		if (head->right == NULL)
-		{
-			new_node->parent = head;
-			head->right = new_node;
-		}
-		else
-		{
-			if (value < head->n)
-				insert_left(head, new_node);
-			else
-				insert_right(head, new_node);
-		}
+		insert_right(head, new_node);
 	}
 	return (parent);
 }
@@ -79,28 +57,3 @@ void insert_right(binary_tree_t *prnt, binary_tree_t *new_node)
 	prnt->right = new_node;
 
 }
-
-/**
- * insert_left - creates a node to the left of
- * it's parent if the node is not NULL
- *
- * Description: If the parent node already has a child (reserve),
- * the new node becomes the new child with reserve becoming the
- * child of the new_node.
- * Hence, reserve becomes a descendant/grandchild of previous parent
- *
- * @prnt: parent node to be used for insertion
- * @new_node: newly created node
- */
-
-void insert_left(binary_tree_t *prnt, binary_tree_t *new_node)
-{
-	binary_tree_t *reserve;
-
-	reserve = prnt->left;
-	reserve->parent = new_node;
-	new_node->parent = prnt;
-	new_node->left = reserve;
-	prnt->left = new_node;
-}
-
