@@ -44,4 +44,7 @@ void binary_tree_inorder(const binary_tree_t *tree, void (*func)(int));
 void binary_tree_postorder(const binary_tree_t *tree, void (*func)(int));
 size_t binary_tree_height(const binary_tree_t *tree);
 int getHeight(const binary_tree_t *node, size_t a);
+size_t binary_tree_depth(const binary_tree_t *tree);
+size_t binary_tree_depth_search(const binary_tree_t *t, size_t count);
+
 #endif /* BINARY_TREES_H */
