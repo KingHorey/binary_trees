@@ -1,0 +1,4 @@
+#ignore all hidden dir
+.*/
+ignore all main files
+?.main.c
