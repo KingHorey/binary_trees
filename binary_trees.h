@@ -47,4 +47,5 @@ int getHeight(const binary_tree_t *node, size_t a);
 size_t binary_tree_depth(const binary_tree_t *tree);
 size_t binary_tree_depth_search(const binary_tree_t *t, size_t count);
 size_t binary_tree_size(const binary_tree_t *tree);
+size_t binary_tree_leaves(const binary_tree_t *tree);
 #endif /* BINARY_TREES_H */
