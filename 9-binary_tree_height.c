@@ -15,27 +15,8 @@ size_t binary_tree_height(const binary_tree_t *tree)
 
 	if (tree == NULL)
 		return (0);
-	left = getHeight(tree, 0);
-	right = getHeight(tree, 0);
-	if (left > right)
-		return (left);
-	return (right);
+	left = 1 + binary_tree_height(tree->left);
+	right = 1 + binary_tree_height(tree->right);
+	return (left > right ? left : right);
 }
 
-/**
- * getHeight - helper function that gets the height of a binary tree
- *
- * @node: pointer to the node for traversal
- * @a: counter for height
- *
- * Return: height of the tree
-*/
-
-int getHeight(const binary_tree_t *node, size_t a)
-{
-	if (node->left)
-		return (getHeight(node->left, a + 1));
-	if (node->right)
-		return (getHeight(node->right, a + 1));
-	return (a);
-}
